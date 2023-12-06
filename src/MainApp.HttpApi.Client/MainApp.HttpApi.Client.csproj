@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MainApp.Application.Contracts\MainApp.Application.Contracts.csproj" />
-  </ItemGroup>
+  <ProjectReference Include="..\..\modules\ModuleA\src\ModuleA.HttpApi.Client\ModuleA.HttpApi.Client.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.HttpApi.Client" Version="7.4.3" />

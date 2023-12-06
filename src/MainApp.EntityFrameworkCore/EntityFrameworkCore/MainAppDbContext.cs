@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -12,6 +12,8 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using ModuleA.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace MainApp.EntityFrameworkCore;
 
@@ -53,6 +55,8 @@ public class MainAppDbContext :
 
     #endregion
 
+    public DbSet<Hotel> Hotels { get; set; }
+
     public MainAppDbContext(DbContextOptions<MainAppDbContext> options)
         : base(options)
     {
@@ -82,5 +86,11 @@ public class MainAppDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
-    }
+        builder.Entity<Hotel>(b =>
+        {
+            b.ToTable(MainAppConsts.DbTablePrefix + "Hotels", MainAppConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.ConfigureModuleA();
+        }
 }

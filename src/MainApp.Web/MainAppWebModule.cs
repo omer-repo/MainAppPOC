@@ -37,6 +37,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using ModuleA.Web;
+using ModuleA;
 
 namespace MainApp.Web;
 
@@ -53,7 +55,8 @@ namespace MainApp.Web;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpSwashbuckleModule)
     )]
-public class MainAppWebModule : AbpModule
+[DependsOn(typeof(ModuleAWebModule))]
+    public class MainAppWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -158,6 +161,11 @@ public class MainAppWebModule : AbpModule
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ConventionalControllers.Create(typeof(MainAppApplicationModule).Assembly);
+        });
+
+        Configure<AbpAspNetCoreMvcOptions>(options =>
+        {
+            options.ConventionalControllers.Create(typeof(ModuleAApplicationModule).Assembly);
         });
     }
 

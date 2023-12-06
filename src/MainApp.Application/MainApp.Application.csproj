@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MainApp.Domain\MainApp.Domain.csproj" />
     <ProjectReference Include="..\MainApp.Application.Contracts\MainApp.Application.Contracts.csproj" />
-  </ItemGroup>
+  <ProjectReference Include="..\..\modules\ModuleA\src\ModuleA.Application\ModuleA.Application.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.Application" Version="7.4.3" />
